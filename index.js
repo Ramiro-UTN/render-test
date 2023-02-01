@@ -6,7 +6,7 @@ app.use(express.json())
 app.use(cors())
 morgan.token('body', (req, res) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :response-time ms - :res[content-length] :body - :req[content-length]'));
-
+app.use(express.static('build'))
 
 let notes = [
     {
@@ -39,9 +39,7 @@ app.use(requestLogger)
 
 
 
-app.get('/', (req, res)=> {
-res.send('<h1>Hello World</h1>')
-})
+
 
 app.get('/api/notes', (req,res) => {
     res.json(notes)
